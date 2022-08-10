@@ -23,7 +23,7 @@ class NetworkingManager {
         }
     }
     
-    static func downloadWithConcurrecy(url: URL) async throws -> Data? {
+    static func downloadWithConcurrency(url: URL) async throws -> Data? {
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
             return handleResponse(data: data, response: response)
