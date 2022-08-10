@@ -27,10 +27,8 @@ struct FlickerImage: View {
                 ProgressView()
             }
         }
-        .onAppear {
-            Task {
-                await vm.getFlickerImage()
-            }
+        .task {
+            await vm.getFlickerImage()
         }
     }
 }
