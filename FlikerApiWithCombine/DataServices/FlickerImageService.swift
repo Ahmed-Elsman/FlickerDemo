@@ -7,36 +7,21 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
 class FlickerImageService {
     
-    @Published var image: UIImage? = nil
-    
-    private var imageSubscription: AnyCancellable?
     private let flickerItem: FlickerItem
     
     init(flickerItem: FlickerItem) {
         self.flickerItem = flickerItem
-        getFlickerImage()
     }
     
-    private func getFlickerImage() {
-        downloadFlickerImage()
+    func getFlickerImageAsync() async -> Data? {
+        await downloadFlickerImageAsync()
     }
     
-    private func downloadFlickerImage() {
-        guard let url = URL(string: "https://farm\(flickerItem.farm).static.flickr.com/\(flickerItem.server)/\(flickerItem.id)_\(flickerItem.secret).jpg") else { return }
-        
-        imageSubscription = NetworkingManager.download(url: url)
-            .tryMap({ (data) -> UIImage? in
-                return UIImage(data: data)
-            })
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedImage) in
-                guard let self = self, let downloadedImage = returnedImage else { return }
-                self.image = downloadedImage
-                self.imageSubscription?.cancel()
-            })
+    private func downloadFlickerImageAsync() async -> Data? {
+        guard let url = URL(string: "https://farm\(flickerItem.farm).static.flickr.com/\(flickerItem.server)/\(flickerItem.id)_\(flickerItem.secret).jpg") else { return nil }
+        return try? await NetworkingManager.downloadWithConcurrency(url: url)
     }
 }

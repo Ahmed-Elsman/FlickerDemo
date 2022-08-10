@@ -32,7 +32,7 @@ class NetworkingManager {
         }
     }
     
-    static func handleResponse(data: Data?, response: URLResponse?) -> Data? {
+    static private func handleResponse(data: Data?, response: URLResponse?) -> Data? {
         guard
             let data = data,
             let response = response as? HTTPURLResponse,
@@ -49,7 +49,7 @@ class NetworkingManager {
             .eraseToAnyPublisher()
     }
     
-    static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
+    static private func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300 else {
             throw NetworkingError.badURLResponse(url: url)
