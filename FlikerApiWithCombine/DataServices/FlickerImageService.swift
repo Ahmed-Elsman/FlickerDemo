@@ -19,7 +19,6 @@ class FlickerImageService {
     init(flickerItem: FlickerItem) {
         self.flickerItem = flickerItem
         getFlickerImage()
-//        await downloadFlickerImageWithConcurency()
     }
     
     private func getFlickerImage() {
@@ -40,11 +39,4 @@ class FlickerImageService {
                 self.imageSubscription?.cancel()
             })
     }
-    
-    private func downloadFlickerImageWithConcurency() async {
-        guard let url = URL(string: "https://farm\(flickerItem.farm).static.flickr.com/\(flickerItem.server)/\(flickerItem.id)_\(flickerItem.secret).jpg") else { return }
-        
-        image = try? await NetworkingManager.downloadWithConcurrecy(url: url)
-    }
-    
 }
