@@ -23,24 +23,23 @@ class NetworkingManager {
         }
     }
     
-    static func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {
-        guard
-            let data = data,
-            let image = UIImage(data: data),
-            let response = response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-                return nil
-            }
-        return  image
-    }
-    
-    static func downloadWithConcurrecy(url: URL) async throws -> UIImage? {
+    static func downloadWithConcurrecy(url: URL) async throws -> Data? {
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
             return handleResponse(data: data, response: response)
         } catch let error {
             throw error
         }
+    }
+    
+    static func handleResponse(data: Data?, response: URLResponse?) -> Data? {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+                return nil
+            }
+        return  data
     }
     
     static func download(url: URL) -> AnyPublisher<Data, Error> {
