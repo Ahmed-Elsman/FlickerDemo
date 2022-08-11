@@ -23,25 +23,6 @@ class NetworkingManager {
         }
     }
     
-    static func downloadWithConcurrency(url: URL) async throws -> Data? {
-        do {
-            let (data, response) = try await URLSession.shared.data(from: url)
-            return await handleResponse(data: data, response: response)
-        } catch let error {
-            throw error
-        }
-    }
-    
-    static private func handleResponse(data: Data?, response: URLResponse?) async -> Data? {
-        guard
-            let data = data,
-            let response = response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-                return nil
-            }
-        return  data
-    }
-    
     static func download(url: URL) -> AnyPublisher<Data, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap({ try handleURLResponse(output: $0, url: url) })
@@ -49,7 +30,7 @@ class NetworkingManager {
             .eraseToAnyPublisher()
     }
     
-    static private func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
+    static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300 else {
             throw NetworkingError.badURLResponse(url: url)
