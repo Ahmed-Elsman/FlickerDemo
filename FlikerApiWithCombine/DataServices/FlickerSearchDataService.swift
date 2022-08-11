@@ -35,13 +35,4 @@ class FlickerSearchDataService {
             })
     }
     
-    func getItemsWithAsync(searchKeyword: String, perPage: Int, page: Int) async -> [FlickerItem]? {
-        guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ae5dd61ab369ce45e5cba1f5e947059&text=\(searchKeyword)&per_page=\(perPage)&page=\(page)&format=json&nojsoncallback=1") else { return [] }
-        
-        if let data = try? await NetworkingManager.downloadWithConcurrency(url: url) {
-            return try? JSONDecoder().decode(FlickerResponse.self, from: data).photos?.photo
-        } else {
-            return []
-        }
-    }
 }
