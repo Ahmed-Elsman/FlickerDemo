@@ -15,7 +15,6 @@ struct FlickerImage: View {
         _vm = StateObject(wrappedValue: FlickerImageViewModel(flickerItem: flickerItem))
     }
     
-    
     var body: some View {
         ZStack {
             if let image = vm.image {
@@ -24,12 +23,12 @@ struct FlickerImage: View {
                     .scaledToFill()
                     .frame(width: 150, height: 150)
                     .cornerRadius(20)
-            } else if vm.isLoading {
-                ProgressView()
             } else {
-                Image(systemName: "questionmark")
-                    .foregroundColor(Color.theme.secondaryText)
+                ProgressView()
             }
+        }
+        .task {
+            await vm.getFlickerImage()
         }
     }
 }

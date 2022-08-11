@@ -27,10 +27,22 @@ class SearchListViewModel: ObservableObject {
     
     init() {
         flickerSearchDataService = FlickerSearchDataService()
-        UserDefaultsUtility.getPreviousSearchItems(previousSearchList: &previousSearchList)
-        addSubscribers()
+//        UserDefaultsUtility.getPreviousSearchItems(previousSearchList: &previousSearchList)
+//        addSubscribers()
     }
     
+    
+    func getFlickerItemsAsync() async {
+        guard !searchText.isEmpty && searchText.count > 2 else { return }
+        let searchText = searchText.lowercased()
+        if let items = await flickerSearchDataService.getItemsWithAsync(searchKeyword: searchText, perPage: 10, page: page) {
+            await MainActor.run {
+                self.flickerItems = items
+            }
+        }
+    }
+    
+    /*
     private func addSubscribers() {
         
         // search and update flicker items list
@@ -52,14 +64,14 @@ class SearchListViewModel: ObservableObject {
     }
     
     private func mapSearchAndReturnedFlickerItems(keyword: String, page: Int, returnedItems: [FlickerItem], previousSearchItems: [SearchItem]) -> (flickerItems: [FlickerItem], previousSearchItems: [SearchItem]?) {
-
+        
         UserDefaultsUtility.addItem(title: keyword, previousSearchList: &previousSearchList)
         
         let lowercasedText = keyword.lowercased()
         flickerSearchDataService.getItems(searchKeyword: lowercasedText, perPage: 10, page: page)
         return (returnedItems, nil)
     }
-    
+    */
     func deleteItem(indexSet: IndexSet) {
         UserDefaultsUtility.deleteItem(indexSet: indexSet, previousSearchList: &previousSearchList)
     }

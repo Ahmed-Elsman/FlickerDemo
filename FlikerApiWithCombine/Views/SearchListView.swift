@@ -69,6 +69,13 @@ extension SearchListView {
                         }
                     ,alignment: .trailing
                 )
+            Button {
+                Task {
+                    await vm.getFlickerItemsAsync()
+                }
+            } label: {
+                Text("Search")
+            }
         }
         .font(.headline)
         .padding()
