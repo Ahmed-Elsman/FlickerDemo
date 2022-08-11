@@ -26,14 +26,13 @@ class NetworkingManager {
     static func downloadWithConcurrency(url: URL) async throws -> Data? {
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
-            try Task.checkCancellation()
-            return handleResponse(data: data, response: response)
+            return await handleResponse(data: data, response: response)
         } catch let error {
             throw error
         }
     }
     
-    static private func handleResponse(data: Data?, response: URLResponse?) -> Data? {
+    static private func handleResponse(data: Data?, response: URLResponse?) async -> Data? {
         guard
             let data = data,
             let response = response as? HTTPURLResponse,
