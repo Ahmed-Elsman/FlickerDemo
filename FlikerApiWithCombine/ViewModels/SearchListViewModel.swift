@@ -15,7 +15,6 @@ class SearchListViewModel: ObservableObject {
     private let searchListKey: String = "previous_search"
     
     @Published var page: Int = 1
-    @Published var hasMoreRows: Bool = true
     @Published var searchText: String = ""
     @Published var flickerItems: [FlickerItem] = []
     @Published var previousSearchList: [SearchItem]  = [] {
@@ -24,8 +23,8 @@ class SearchListViewModel: ObservableObject {
         }
     }
     
-    init() {
-        flickerSearchDataService = FlickerSearchDataService()
+    init(flickerSearchDataService: FlickerSearchDataService) {
+        self.flickerSearchDataService = flickerSearchDataService
         previousSearchList = UserDefaultsUtility.shared.getPreviousSearchItems()
         addSubscribers()
     }

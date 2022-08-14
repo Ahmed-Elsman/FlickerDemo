@@ -11,7 +11,9 @@ import SwiftUI
 struct FlikerApiWithCombineApp: App {
     var body: some Scene {
         
-        let vm = SearchListViewModel()
+        let flickerSearchDataService = FlickerSearchDataService()
+        
+        let vm = SearchListViewModel(flickerSearchDataService: flickerSearchDataService)
         
         WindowGroup {
             SearchListView(vm: vm)

@@ -36,6 +36,7 @@ struct ListRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SearchHistoryRowView(item: itemModel1)
+                .previewLayout(.sizeThatFits)
         }
         
     }
