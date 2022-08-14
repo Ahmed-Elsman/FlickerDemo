@@ -12,7 +12,7 @@
 		27512B29289EE071009F16AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27512B28289EE071009F16AC /* Preview Assets.xcassets */; };
 		27512B33289EE119009F16AC /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B32289EE119009F16AC /* SearchListView.swift */; };
 		27512B3D289EE17B009F16AC /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B37289EE17B009F16AC /* PreviewProvider.swift */; };
-		27512B40289EE17B009F16AC /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B3A289EE17B009F16AC /* UIApplication.swift */; };
+		27512B40289EE17B009F16AC /* UIApplication+Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B3A289EE17B009F16AC /* UIApplication+Editing.swift */; };
 		27512B41289EE17B009F16AC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B3B289EE17B009F16AC /* Color.swift */; };
 		27512B43289EE51B009F16AC /* FlickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B42289EE51B009F16AC /* FlickerResponse.swift */; };
 		27512B45289EE558009F16AC /* FlickerPaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B44289EE558009F16AC /* FlickerPaging.swift */; };
@@ -28,6 +28,8 @@
 		27BFCEB528A0F67600B88BA1 /* FlickerImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEB428A0F67600B88BA1 /* FlickerImageService.swift */; };
 		27BFCEB728A0F92800B88BA1 /* FlickerImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEB628A0F92800B88BA1 /* FlickerImageViewModel.swift */; };
 		27BFCEB928A26F0800B88BA1 /* UserDefaultsUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEB828A26F0800B88BA1 /* UserDefaultsUtility.swift */; };
+		27CE349E28A8FF3100174403 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE349D28A8FF3100174403 /* ColorTheme.swift */; };
+		27CE34A028A8FF4300174403 /* LaunchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE349F28A8FF4300174403 /* LaunchTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,7 @@
 		27512B28289EE071009F16AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		27512B32289EE119009F16AC /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		27512B37289EE17B009F16AC /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
-		27512B3A289EE17B009F16AC /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		27512B3A289EE17B009F16AC /* UIApplication+Editing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Editing.swift"; sourceTree = "<group>"; };
 		27512B3B289EE17B009F16AC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		27512B42289EE51B009F16AC /* FlickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerResponse.swift; sourceTree = "<group>"; };
 		27512B44289EE558009F16AC /* FlickerPaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerPaging.swift; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		27BFCEB428A0F67600B88BA1 /* FlickerImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerImageService.swift; sourceTree = "<group>"; };
 		27BFCEB628A0F92800B88BA1 /* FlickerImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerImageViewModel.swift; sourceTree = "<group>"; };
 		27BFCEB828A26F0800B88BA1 /* UserDefaultsUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtility.swift; sourceTree = "<group>"; };
+		27CE349D28A8FF3100174403 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		27CE349F28A8FF4300174403 /* LaunchTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				27512B37289EE17B009F16AC /* PreviewProvider.swift */,
-				27512B3A289EE17B009F16AC /* UIApplication.swift */,
-				27512B3B289EE17B009F16AC /* Color.swift */,
+				27512B3A289EE17B009F16AC /* UIApplication+Editing.swift */,
+				27CE349C28A8FF1500174403 /* AppColors */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,6 +176,16 @@
 				27BFCEB628A0F92800B88BA1 /* FlickerImageViewModel.swift */,
 			);
 			path = FlickerImage;
+			sourceTree = "<group>";
+		};
+		27CE349C28A8FF1500174403 /* AppColors */ = {
+			isa = PBXGroup;
+			children = (
+				27512B3B289EE17B009F16AC /* Color.swift */,
+				27CE349D28A8FF3100174403 /* ColorTheme.swift */,
+				27CE349F28A8FF4300174403 /* LaunchTheme.swift */,
+			);
+			path = AppColors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,11 +259,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				27BFCEAC289FA86E00B88BA1 /* SearchItem.swift in Sources */,
+				27CE349E28A8FF3100174403 /* ColorTheme.swift in Sources */,
 				27BFCEB728A0F92800B88BA1 /* FlickerImageViewModel.swift in Sources */,
 				27512B45289EE558009F16AC /* FlickerPaging.swift in Sources */,
 				27512B47289EE581009F16AC /* FlickerItem.swift in Sources */,
 				27512B33289EE119009F16AC /* SearchListView.swift in Sources */,
-				27512B40289EE17B009F16AC /* UIApplication.swift in Sources */,
+				27512B40289EE17B009F16AC /* UIApplication+Editing.swift in Sources */,
 				27512B3D289EE17B009F16AC /* PreviewProvider.swift in Sources */,
 				27512B54289EF6A4009F16AC /* SearchListViewModel.swift in Sources */,
 				27BFCEB528A0F67600B88BA1 /* FlickerImageService.swift in Sources */,
@@ -259,6 +274,7 @@
 				27512B41289EE17B009F16AC /* Color.swift in Sources */,
 				27BFCEB928A26F0800B88BA1 /* UserDefaultsUtility.swift in Sources */,
 				27512B43289EE51B009F16AC /* FlickerResponse.swift in Sources */,
+				27CE34A028A8FF4300174403 /* LaunchTheme.swift in Sources */,
 				27BFCEB328A0F5B000B88BA1 /* FlickerImage.swift in Sources */,
 				27512B22289EE06F009F16AC /* FlikerApiWithCombineApp.swift in Sources */,
 				27BFCEAE289FAD6300B88BA1 /* SearchHistoryRowView.swift in Sources */,
