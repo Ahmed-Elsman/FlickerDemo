@@ -20,13 +20,13 @@ class SearchListViewModel: ObservableObject {
     @Published var flickerItems: [FlickerItem] = []
     @Published var previousSearchList: [SearchItem]  = [] {
         didSet {
-            UserDefaultsUtility.saveItems(previousSearchList: previousSearchList)
+            UserDefaultsUtility.shared.saveItems(previousSearchList: previousSearchList)
         }
     }
     
     init() {
         flickerSearchDataService = FlickerSearchDataService()
-        previousSearchList = UserDefaultsUtility.getPreviousSearchItems()
+        previousSearchList = UserDefaultsUtility.shared.getPreviousSearchItems()
         addSubscribers()
     }
     
@@ -53,7 +53,7 @@ class SearchListViewModel: ObservableObject {
     
     private func mapSearchAndReturnedFlickerItems(keyword: String, page: Int, returnedItems: [FlickerItem], previousSearchItems: [SearchItem]) -> (flickerItems: [FlickerItem], previousSearchItems: [SearchItem]?) {
         
-        previousSearchList = UserDefaultsUtility.addItem(title: keyword)
+        previousSearchList = UserDefaultsUtility.shared.addItem(title: keyword)
         
         let lowercasedText = keyword.lowercased()
         flickerSearchDataService.getItems(searchKeyword: lowercasedText, perPage: 10, page: page)
@@ -61,10 +61,10 @@ class SearchListViewModel: ObservableObject {
     }
     
     func deleteItem(indexSet: IndexSet) {
-        previousSearchList = UserDefaultsUtility.deleteItem(indexSet: indexSet)
+        previousSearchList = UserDefaultsUtility.shared.deleteItem(indexSet: indexSet)
     }
     
     func moveItem(fromIndex: IndexSet, toIndex: Int) {
-        previousSearchList = UserDefaultsUtility.moveItem(fromIndex: fromIndex, toIndex: toIndex)
+        previousSearchList = UserDefaultsUtility.shared.moveItem(fromIndex: fromIndex, toIndex: toIndex)
     }
 }
