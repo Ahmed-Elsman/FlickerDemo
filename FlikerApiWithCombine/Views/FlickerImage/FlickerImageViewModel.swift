@@ -1,8 +1,8 @@
 //
 //  FlickerImageViewModel.swift
-//  SwiftfulCrypto
+//  FlikerApiWithCombine
 //
-//  Created by Ahmed Elsman on 08/08/2022.
+//  Created by Ahmed Elsman on 06/07/2022.
 //
 
 import Foundation

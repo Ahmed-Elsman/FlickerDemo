@@ -1,8 +1,8 @@
 //
 //  Color.swift
-//  SwiftfulCrypto
+//  FlikerApiWithCombine
 //
-//  Created by Nick Sarno on 5/8/21.
+//  Created by Ahmed Elsman on 06/07/2022.
 //
 
 import Foundation
