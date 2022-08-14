@@ -16,7 +16,6 @@ class FlickerImageService {
     private func downloadFlickerImage(imagePath: String, completionHandler: @escaping (Result<Data, Error>) -> ()) {
         guard let url = URL(string: imagePath) else { return }
         imageSubscription = NetworkingManager.download(url: url)
-            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: {(returnedData) in
                 completionHandler(.success(returnedData))
                 self.imageSubscription?.cancel()

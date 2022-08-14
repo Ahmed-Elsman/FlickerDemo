@@ -59,7 +59,6 @@ class SearchListViewModel: ObservableObject {
         flickerSearchDataService.getItems(searchKeyword: lowercasedText, perPage: 10, page: page)
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                
             } receiveValue: {[weak self] flikerItems in
                 guard let self = self else { return }
                 self.flickerItems = flikerItems

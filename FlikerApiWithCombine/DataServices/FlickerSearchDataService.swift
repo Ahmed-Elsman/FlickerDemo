@@ -17,7 +17,6 @@ class FlickerSearchDataService {
         
         flickerSearchSubscription = NetworkingManager.download(url: url)
             .decode(type: FlickerResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedResponse) in
                 completionHandler(.success(returnedResponse.photos?.photo ?? []))
                 self?.flickerSearchSubscription?.cancel()

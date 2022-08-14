@@ -27,6 +27,7 @@ class FlickerImageViewModel: ObservableObject {
     
     private func addSubscribers() {
         dataService.downloadFlickerImage(imagePath: flickerItem.imagePath)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (_) in
                 self?.isLoading = false
             } receiveValue: { [weak self] (returnedData) in
