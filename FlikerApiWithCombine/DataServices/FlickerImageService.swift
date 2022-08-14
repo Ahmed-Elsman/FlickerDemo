@@ -26,7 +26,7 @@ class FlickerImageService {
     }
     
     private func downloadFlickerImage() {
-        guard let url = URL(string: "https://farm\(flickerItem.farm).static.flickr.com/\(flickerItem.server)/\(flickerItem.id)_\(flickerItem.secret).jpg") else { return }
+        guard let url = URL(string: flickerItem.imagePath) else { return }
         
         imageSubscription = NetworkingManager.download(url: url)
             .tryMap({ (data) -> UIImage? in
