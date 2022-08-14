@@ -9,15 +9,28 @@ import SwiftUI
 
 struct FlickerImage: View {
     
-    @StateObject var vm: FlickerImageViewModel
+//    @StateObject var vm: FlickerImageViewModel
+    let flickerItem: FlickerItem
     
     init(flickerItem: FlickerItem) {
-        _vm = StateObject(wrappedValue: FlickerImageViewModel(flickerItem: flickerItem))
+        self.flickerItem = flickerItem
+//        _vm = StateObject(wrappedValue: FlickerImageViewModel(flickerItem: flickerItem))
     }
     
-    
+
     var body: some View {
         ZStack {
+            AsyncImage(url: URL(string: flickerItem.imagePath)) { currentImage in
+                currentImage
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 150)
+                    .cornerRadius(20)
+            } placeholder: {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
+            /* old version of downloading images
             if let image = vm.image {
                 Image(uiImage: image)
                     .resizable()
@@ -30,6 +43,7 @@ struct FlickerImage: View {
                 Image(systemName: "questionmark")
                     .foregroundColor(Color.theme.secondaryText)
             }
+            */
         }
     }
 }
