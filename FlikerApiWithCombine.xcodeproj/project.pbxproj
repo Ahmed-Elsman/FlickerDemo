@@ -22,7 +22,7 @@
 		27512B52289EF080009F16AC /* FlickerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B51289EF080009F16AC /* FlickerItemView.swift */; };
 		27512B54289EF6A4009F16AC /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27512B53289EF6A4009F16AC /* SearchListViewModel.swift */; };
 		27BFCEAC289FA86E00B88BA1 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEAB289FA86E00B88BA1 /* SearchItem.swift */; };
-		27BFCEAE289FAD6300B88BA1 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEAD289FAD6300B88BA1 /* ListRowView.swift */; };
+		27BFCEAE289FAD6300B88BA1 /* SearchHistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEAD289FAD6300B88BA1 /* SearchHistoryRowView.swift */; };
 		27BFCEB0289FC48500B88BA1 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEAF289FC48500B88BA1 /* NoItemsView.swift */; };
 		27BFCEB328A0F5B000B88BA1 /* FlickerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEB228A0F5B000B88BA1 /* FlickerImage.swift */; };
 		27BFCEB528A0F67600B88BA1 /* FlickerImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BFCEB428A0F67600B88BA1 /* FlickerImageService.swift */; };
@@ -47,7 +47,7 @@
 		27512B51289EF080009F16AC /* FlickerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerItemView.swift; sourceTree = "<group>"; };
 		27512B53289EF6A4009F16AC /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 		27BFCEAB289FA86E00B88BA1 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
-		27BFCEAD289FAD6300B88BA1 /* ListRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
+		27BFCEAD289FAD6300B88BA1 /* SearchHistoryRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryRowView.swift; sourceTree = "<group>"; };
 		27BFCEAF289FC48500B88BA1 /* NoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		27BFCEB228A0F5B000B88BA1 /* FlickerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerImage.swift; sourceTree = "<group>"; };
 		27BFCEB428A0F67600B88BA1 /* FlickerImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerImageService.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				27512B32289EE119009F16AC /* SearchListView.swift */,
-				27BFCEAD289FAD6300B88BA1 /* ListRowView.swift */,
+				27BFCEAD289FAD6300B88BA1 /* SearchHistoryRowView.swift */,
 				27512B51289EF080009F16AC /* FlickerItemView.swift */,
 				27BFCEAF289FC48500B88BA1 /* NoItemsView.swift */,
 				27BFCEB128A0F58D00B88BA1 /* FlickerImage */,
@@ -261,7 +261,7 @@
 				27512B43289EE51B009F16AC /* FlickerResponse.swift in Sources */,
 				27BFCEB328A0F5B000B88BA1 /* FlickerImage.swift in Sources */,
 				27512B22289EE06F009F16AC /* FlikerApiWithCombineApp.swift in Sources */,
-				27BFCEAE289FAD6300B88BA1 /* ListRowView.swift in Sources */,
+				27BFCEAE289FAD6300B88BA1 /* SearchHistoryRowView.swift in Sources */,
 				27512B4E289EE631009F16AC /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

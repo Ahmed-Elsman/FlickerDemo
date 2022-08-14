@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListRowView: View {
+struct SearchHistoryRowView: View {
     
     var item: SearchItem
     
@@ -35,7 +35,7 @@ struct ListRowView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            ListRowView(item: itemModel1)
+            SearchHistoryRowView(item: itemModel1)
         }
         
     }

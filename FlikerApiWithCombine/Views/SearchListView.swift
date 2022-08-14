@@ -91,7 +91,7 @@ extension SearchListView {
                 .padding(.horizontal)
             List {
                 ForEach(vm.previousSearchList) { item in
-                    ListRowView(item: item)
+                    SearchHistoryRowView(item: item)
                         .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
                         .onTapGesture {
                             withAnimation(.easeInOut) {
