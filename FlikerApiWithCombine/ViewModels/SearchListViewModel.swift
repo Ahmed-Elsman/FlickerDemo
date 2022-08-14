@@ -38,7 +38,7 @@ class SearchListViewModel: ObservableObject {
                 print(keyword)
                 return !keyword.isEmpty && keyword.count > 2
             })
-            .combineLatest($page, flickerSearchDataService.$flikerItems, $previousSearchList)
+            .combineLatest($page, $flickerItems, $previousSearchList)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .map(mapSearchAndReturnedFlickerItems)
             .sink { [weak self] (returnedData) in
@@ -57,6 +57,14 @@ class SearchListViewModel: ObservableObject {
         
         let lowercasedText = keyword.lowercased()
         flickerSearchDataService.getItems(searchKeyword: lowercasedText, perPage: 10, page: page)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+            } receiveValue: {[weak self] flikerItems in
+                guard let self = self else { return }
+                self.flickerItems = flikerItems
+            }
+            .store(in: &cancellables)
         return (returnedItems, nil)
     }
     
