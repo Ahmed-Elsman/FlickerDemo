@@ -11,32 +11,23 @@ import Combine
 
 class FlickerImageService {
     
-    @Published var image: UIImage? = nil
-    
     private var imageSubscription: AnyCancellable?
-    private let flickerItem: FlickerItem
     
-    init(flickerItem: FlickerItem) {
-        self.flickerItem = flickerItem
-        getFlickerImage()
-    }
-    
-    private func getFlickerImage() {
-        downloadFlickerImage()
-    }
-    
-    private func downloadFlickerImage() {
-        guard let url = URL(string: flickerItem.imagePath) else { return }
-        
+    private func downloadFlickerImage(imagePath: String, completionHandler: @escaping (Result<Data, Error>) -> ()) {
+        guard let url = URL(string: imagePath) else { return }
         imageSubscription = NetworkingManager.download(url: url)
-            .tryMap({ (data) -> UIImage? in
-                return UIImage(data: data)
-            })
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedImage) in
-                guard let self = self, let downloadedImage = returnedImage else { return }
-                self.image = downloadedImage
+            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: {(returnedData) in
+                completionHandler(.success(returnedData))
                 self.imageSubscription?.cancel()
             })
+    }
+    
+    func downloadFlickerImage(imagePath: String) -> Future<Data, Error> {
+        Future { promise in
+            self.downloadFlickerImage(imagePath: imagePath) { result in
+                promise(result)
+            }
+        }
     }
 }

@@ -20,17 +20,18 @@ class FlickerImageViewModel: ObservableObject {
     
     init(flickerItem: FlickerItem) {
         self.flickerItem = flickerItem
-        self.dataService = FlickerImageService(flickerItem: flickerItem)
+        self.dataService = FlickerImageService()
         self.addSubscribers()
         self.isLoading = true
     }
     
     private func addSubscribers() {
-        dataService.$image
+        dataService.downloadFlickerImage(imagePath: flickerItem.imagePath)
             .sink { [weak self] (_) in
                 self?.isLoading = false
-            } receiveValue: { [weak self] (returnedImage) in
-                self?.image = returnedImage
+            } receiveValue: { [weak self] (returnedData) in
+                guard let self = self else { return }
+                self.image = UIImage(data: returnedData)
             }
             .store(in: &cancellables)
     }
