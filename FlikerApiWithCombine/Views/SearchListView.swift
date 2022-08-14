@@ -51,7 +51,7 @@ extension SearchListView {
     private var searchBar: some View {
         HStack {
             searchIcon
-            TextField(vm.searchTextPlacholder, text: $vm.searchText)
+            TextField("Enter keyword here...", text: $vm.searchText)
                 .font(.headline)
                 .foregroundColor(Color.theme.accent)
                 .frame(height: 35)

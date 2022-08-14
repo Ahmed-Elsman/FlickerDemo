@@ -10,7 +10,6 @@ import Combine
 
 class SearchListViewModel: ObservableObject {
     
-    let searchTextPlacholder: String =  "Enter keyword here..."
     private var flickerSearchDataService: FlickerSearchDataService
     private var cancellables = Set<AnyCancellable>()
     private let searchListKey: String = "previous_search"
