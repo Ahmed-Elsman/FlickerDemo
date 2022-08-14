@@ -8,11 +8,11 @@
 import Foundation
 
 protocol SearchHistoryRepository {
-    static func addItem(title: String, previousSearchList: inout [SearchItem])
-    static func getPreviousSearchItems(previousSearchList: inout [SearchItem])
-    static func moveItem(fromIndex: IndexSet, toIndex: Int, previousSearchList: inout [SearchItem])
-    static func deleteItem(indexSet: IndexSet, previousSearchList: inout [SearchItem])
-    static func saveItems(previousSearchList: [SearchItem])
+    static func addItem<T: Searchable>(title: String) -> [T]
+    static func getPreviousSearchItems<T: Searchable>() -> [T]
+    static func moveItem<T: Searchable>(fromIndex: IndexSet, toIndex: Int) -> [T]
+    static func deleteItem<T: Searchable>(indexSet: IndexSet) -> [T]
+    static func saveItems<T: Searchable>(previousSearchList: [T])
 }
 
 class UserDefaultsUtility: SearchHistoryRepository {
@@ -28,27 +28,33 @@ class UserDefaultsUtility: SearchHistoryRepository {
         return !previousSearchList.contains(where: {$0 == item})
     }
     
-    static func addItem<T: Searchable>(title: String, previousSearchList: inout [T]) {
+    static func addItem<T: Searchable>(title: String) -> [T] {
+        var previousSearchList = UserDefaultsUtility.getPreviousSearchItems() as [T]
         if UserDefaultsUtility.isValidToAdd(title, previousSearchList: previousSearchList) {
             let newItem = T(id: UUID().uuidString, title: title)
             previousSearchList.append(newItem)
         }
+        return previousSearchList
     }
     
-    static func getPreviousSearchItems<T: Searchable>(previousSearchList: inout [T]) {
+    static func getPreviousSearchItems<T: Searchable>() -> [T] {
         guard
             let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.SearchListKey.rawValue),
             let items = try? JSONDecoder().decode([T].self, from: data)
-        else {return}
-        previousSearchList = items
+        else {return []}
+        return items
     }
     
-    static func moveItem<T: Searchable>(fromIndex: IndexSet, toIndex: Int, previousSearchList: inout [T]) {
+    static func moveItem<T: Searchable>(fromIndex: IndexSet, toIndex: Int) -> [T] {
+        var previousSearchList = UserDefaultsUtility.getPreviousSearchItems() as [T]
         previousSearchList.move(fromOffsets: fromIndex, toOffset: toIndex)
+        return previousSearchList
     }
     
-    static func deleteItem<T: Searchable>(indexSet: IndexSet, previousSearchList: inout [T]) {
+    static func deleteItem<T: Searchable>(indexSet: IndexSet) -> [T] {
+        var previousSearchList = UserDefaultsUtility.getPreviousSearchItems() as [T]
         previousSearchList.remove(atOffsets: indexSet)
+        return previousSearchList
     }
     
     static func saveItems<T: Searchable>(previousSearchList: [T]) {
